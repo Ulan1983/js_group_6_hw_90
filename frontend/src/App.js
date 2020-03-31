@@ -31,12 +31,16 @@ class App extends Component {
         }
     }
 
+    generateColor() {
+        return '#' + Math.floor(Math.random()*16777215).toString(16);
+    };
+
     onCanvasDraw = (x, y) => {
         const canvas = this.canvas.current;
 
         const ctx = canvas.getContext('2d');
 
-        ctx.fillStyle = 'green';
+        ctx.fillStyle = this.generateColor();
         ctx.fillRect(x, y, 10, 10);
     };
 
@@ -60,7 +64,7 @@ class App extends Component {
             }
         };
 
-        ctx.fillStyle = 'green';
+        ctx.fillStyle = this.generateColor();
         ctx.fillRect(x, y, 10, 10);
 
         this.websocket.send(JSON.stringify(data));
